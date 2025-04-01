@@ -1,5 +1,5 @@
 FROM golang:1.17.8 AS builder
-WORKDIR /
+WORKDIR /app
 COPY . .
 RUN make
 
@@ -13,9 +13,9 @@ RUN sed -i s@/archive.ubuntu.com/@/mirrors.cloud.tencent.com/@g /etc/apt/sources
     apt-get install iptables -y
 
 
-WORKDIR /
+WORKDIR /app
 
-COPY --from=builder /iptables-server .
+COPY --from=builder /app/iptables-server .
 
 ENTRYPOINT ["/iptables-server"]
 
