@@ -17,6 +17,6 @@ WORKDIR /app
 
 COPY --from=builder /app/iptables-server .
 
-ENTRYPOINT ["/iptables-server"]
+CMD ["./iptables-server"]
 
 
